@@ -8,4 +8,6 @@ public interface TubeFactory {
 
 	TubeBuffer createBuffer(double width, double height);
 
+	void runOnUIThread(Runnable runn);
+
 }

@@ -1,11 +1,14 @@
 package ananas.lib.cardgame.core;
 
+import ananas.lib.cardgame.core.tube.TubeFactory;
+
 public interface Game {
 
-	RoundFactory getRoundFactory();
+	RoundLoader getRoundLoader();
 
 	ImageResourceManager getImageResourceManager();
 
 	CardClassManager getCardClassManager();
 
+	TubeFactory getTubeFactory();
 }

@@ -1,13 +1,23 @@
 package ananas.lib.cardgame.core;
 
+import ananas.lib.cardgame.core.tube.Tube;
+
 public interface Viewport {
 
-	double top();
+	double getTop();
 
-	double left();
+	double getLeft();
 
-	double right();
+	double getRight();
 
-	double bottom();
+	double getBottom();
+
+	double getWidth();
+
+	double getHeight();
+
+	void setBound(double x, double y, double width, double height);
+
+	void onDraw(Tube tube);
 
 }

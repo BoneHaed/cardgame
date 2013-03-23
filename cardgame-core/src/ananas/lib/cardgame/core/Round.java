@@ -11,4 +11,7 @@ public interface Round {
 	LayerManager getLayerManager();
 
 	PlayerManager getPlayerManager();
+
+	Viewport getViewport();
+
 }
