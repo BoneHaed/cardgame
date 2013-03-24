@@ -2,26 +2,52 @@ package ananas.lib.cardgame.core;
 
 import ananas.lib.cardgame.core.tube.Tube;
 
-public interface VisualObject extends RoundObject {
+public interface VisualObject extends RoundObject, CoordinateSystem {
 
-	Viewport getViewport();
+	/**
+	 * position
+	 * */
+	double targetX();
+
+	double targetY();
 
 	double x();
 
 	double y();
 
+	void setPosition(double x, double y);
+
+	void setTargetPosition(double x, double y);
+
+	/**
+	 * layer
+	 * */
 	Layer getLayer();
 
 	void setLayer(Layer layer);
 
-	double boundLeft();
+	/**
+	 * extends
+	 * */
+	double getExtendLeft();
 
-	double boundRight();
+	double getExtendRight();
 
-	double boundTop();
+	double getExtendTop();
 
-	double boundBottom();
+	double getExtendBottom();
 
+	void setExtends(double left, double top, double right, double bottom);
+
+	double getWidth();
+
+	double getHeight();
+
+	/**
+	 * drawing
+	 * */
 	void onDraw(Tube tube);
+
+	CoordinateSystem getCoordinateSystem();
 
 }

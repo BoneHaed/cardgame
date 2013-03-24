@@ -14,4 +14,10 @@ public interface Round {
 
 	Viewport getViewport();
 
+	void reset();
+
+	void setController(RoundController ctrl);
+
+	RoundController getController();
+
 }

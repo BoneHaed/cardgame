@@ -1,0 +1,26 @@
+<game xmlns="xmlns:ananas:cardgame:xmlgame">
+
+	<resource>
+
+		<image src="resource:///demo/card_1.png" />
+
+	</resource>
+
+	<round>
+
+		<layers>
+			<layer id="layer-1" />
+		</layers>
+
+		<groups>
+			<group id="group-1" />
+		</groups>
+
+		<cards>
+			<card id="card-1" />
+		</cards>
+
+
+	</round>
+
+</game>

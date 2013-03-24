@@ -8,7 +8,12 @@ import java.awt.event.MouseMotionListener;
 
 import javax.swing.JPanel;
 
+import ananas.lib.cardgame.core.Game;
+import ananas.lib.cardgame.core.GameFactory;
+import ananas.lib.cardgame.core.GameFactory.CreateGameContext;
 import ananas.lib.cardgame.core.Round;
+import ananas.lib.cardgame.core.RoundLoader;
+import ananas.lib.cardgame.core.RoundLoaderCallback;
 import ananas.lib.cardgame.core.Viewport;
 import ananas.lib.cardgame.core.tube.Tube;
 import ananas.lib.cardgame.core.tube.TubeFactory;
@@ -21,9 +26,9 @@ public class JCardGamePanel extends JPanel implements MouseMotionListener,
 	private Round mRound;
 	private final SwingTubeFactory mTubeFactory;
 
-	public JCardGamePanel(Round round) {
+	public JCardGamePanel() {
 		this.mTubeFactory = new SwingTubeFactory();
-		this.mRound = round;
+		this.mRound = null;
 		this.init();
 	}
 
@@ -132,8 +137,9 @@ public class JCardGamePanel extends JPanel implements MouseMotionListener,
 			// update viewport size
 			final double w1 = viewport.getWidth();
 			final double h1 = viewport.getHeight();
-			if (Math.abs(w - w1) >= 1 || Math.abs(h - h1) >= 1) {
-				viewport.setBound(0, 0, w, h);
+			if (Math.abs(w - w1) > (w1 / 10000)
+					|| Math.abs(h - h1) > (h1 / 10000)) {
+				viewport.setExtends(0, 0, w, h);
 			}
 		}
 		viewport.onDraw(tube);
@@ -155,12 +161,37 @@ public class JCardGamePanel extends JPanel implements MouseMotionListener,
 		System.out.println(this + ".setSize()");
 	}
 
-	public TubeFactory getTubeFactory() {
-		return this.mTubeFactory;
-	}
-
 	public void setRound(Round round) {
 		this.mRound = round;
 	}
 
+	class MyCreateGameContext implements CreateGameContext {
+
+		@Override
+		public TubeFactory getTubeFactory() {
+			return JCardGamePanel.this.mTubeFactory;
+		}
+	}
+
+	public void load(GameFactory factory) {
+		CreateGameContext context = new MyCreateGameContext();
+		Game game = factory.createGame(context);
+		RoundLoader ldr = game.getRoundLoader();
+		RoundLoaderCallback callback = new RoundLoaderCallback() {
+
+			@Override
+			public void onLoadingDone(Round round) {
+				round.reset();
+				setRound(round);
+			}
+
+			@Override
+			public void onError(Exception e) {
+				setRound(null);
+				javax.swing.JOptionPane.showMessageDialog(JCardGamePanel.this,
+						e + "");
+			}
+		};
+		ldr.loadRound(callback);
+	}
 }

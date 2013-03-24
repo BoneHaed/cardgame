@@ -8,8 +8,6 @@ public interface Card extends VisualObject {
 
 	CardClass getCardClass();
 
-	String getId();
-
 	Face getFace();
 
 	void setFace(Face face);

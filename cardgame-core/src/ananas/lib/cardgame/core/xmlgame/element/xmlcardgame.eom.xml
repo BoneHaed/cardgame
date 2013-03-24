@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eom xmlns="xmlns:ananas:blueprint:loader:eom">
+
+	<namespace uri=":::::xmlcardgame" enableExport="true">
+
+
+		<property key="myCtrlPackage" value="ananas.lib.cardgame.core.xmlgame.element" />
+		<property key="myTargetPackage" value="ananas.lib.cardgame.core.xmlgame.element" />
+
+
+		<property key="namespace:uri" value="xmlns:ananas:cardgame:xmlgame" />
+		<property key="namespace:defaultPrefix" value="cg" />
+		<property key="class:javaName" value="xxx" />
+
+		<property key="class:controllerClass" value="$(myCtrlPackage).C$(class:javaName)" />
+		<property key="class:targetClass" value="$(myTargetPackage).T$(class:javaName)" />
+
+
+
+
+		<class name="Game" isElement="true">
+		</class>
+
+		<class name="Round" isElement="true">
+		</class>
+
+		<class name="Resource" isElement="true">
+		</class>
+
+		<class name="Image" isElement="true">
+		</class>
+
+		<!-- Visual Objects -->
+
+		<class name="Group" isElement="true">
+		</class>
+
+		<class name="Card" isElement="true">
+		</class>
+
+		<!-- collections -->
+
+		<class name="Groups" isElement="true">
+		</class>
+
+		<class name="Cards" isElement="true">
+		</class>
+
+	</namespace>
+
+</eom>
